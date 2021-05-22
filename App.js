@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, useColorScheme, View, Button } from 'react-native';
+import React from 'react';
+import { SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, useColorScheme, View } from 'react-native';
 import { Provider } from 'react-redux'
 import { Colors, DebugInstructions, Header, LearnMoreLinks, ReloadInstructions, } from 'react-native/Libraries/NewAppScreen';
 import ReduxStore from './src/store'
-import { AppButton, Grid, Col, Row } from "./src/components"
+import { AppButton, Grid, Col, Row, StateStatus } from "./src/components"
 
 
 const Section = ({ children, title }): Node => {
@@ -37,7 +37,7 @@ const App = () => {
     const backgroundStyle = {
         backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
     };
-
+    console.log("@@@@ ",ReduxStore)
     return (
         <SafeAreaView style={backgroundStyle}>
             <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
@@ -46,6 +46,7 @@ const App = () => {
                     contentInsetAdjustmentBehavior="automatic"
                     style={backgroundStyle}>
                     <Header />
+                    <StateStatus/>
                     <View
                         style={{
                             backgroundColor: isDarkMode ? Colors.black : Colors.white,

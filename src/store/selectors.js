@@ -1,2 +1,1 @@
-export const appFullyLoadedSelector = (state) => state.BasicReducer.appFullyLoaded;
-export const buttonLoaderSelector = (state) => state.BasicReducer.buttonLoader;
+export const testReduxStoreSelector = (state) => state.BasicReducer.testReduxStore;
