@@ -1,33 +1,9 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React, { useEffect, useState } from 'react';
-import type { Node } from 'react';
-import {
-    SafeAreaView,
-    ScrollView,
-    StatusBar,
-    StyleSheet,
-    Text,
-    useColorScheme,
-    View,
-    Button
-} from 'react-native';
-import { Provider, useDispatch } from 'react-redux'
-import {
-    Colors,
-    DebugInstructions,
-    Header,
-    LearnMoreLinks,
-    ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-import { BasicActions } from './src/store/actions'
+import { SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, useColorScheme, View, Button } from 'react-native';
+import { Provider } from 'react-redux'
+import { Colors, DebugInstructions, Header, LearnMoreLinks, ReloadInstructions, } from 'react-native/Libraries/NewAppScreen';
 import ReduxStore from './src/store'
+import { AppButton, Grid, Col, Row } from "./src/components"
 
 
 const Section = ({ children, title }): Node => {
@@ -57,18 +33,7 @@ const Section = ({ children, title }): Node => {
 };
 
 const App = () => {
-    // const dispatch = useDispatch();
-    //
-    const [title, setTitle] = useState('TEST')
-    useEffect(() => {
-        // dispatch(BasicActions.appFullyLoaded());
-        setTimeout(() => {
-            setTitle('STET')
-        }, 2000)
-    }, [])
-
     const isDarkMode = useColorScheme() === 'dark';
-
     const backgroundStyle = {
         backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
     };
@@ -85,11 +50,24 @@ const App = () => {
                         style={{
                             backgroundColor: isDarkMode ? Colors.black : Colors.white,
                         }}>
-                        <Button
-                            onPress={() => alert(ReduxStore.store)}
-                            title={title}
-                            color="red"
-                        />
+                        <Grid>
+                            <Row>
+                                <Col>
+                                    <AppButton
+                                        invertButtonColors
+                                        disabled
+                                        title={'Button #1'}
+                                        onPress={() => alert('onPress')}
+                                    />
+                                </Col>
+                                <Col>
+                                    <AppButton
+                                        title={'Button #2'}
+                                        onPress={() => alert('onPress')}
+                                    />
+                                </Col>
+                            </Row>
+                        </Grid>
                         <Section title="Step One">
                             Edit <Text style={styles.highlight}>App.js</Text> to change this
                             screen and then come back to see your edits.

@@ -2,6 +2,7 @@ import * as basicTypes from './basicTypes';
 
 const INITIAL_STATE = {
     appFullyLoaded: false,
+    buttonLoader: false,
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -10,6 +11,12 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 appFullyLoaded: true,
+            };
+        }
+        case basicTypes.TOGGLE_BTN_LOADER: {
+            return {
+                ...state,
+                buttonLoader: action.payload,
             };
         }
         default: {
