@@ -1,10 +1,15 @@
 import React from 'react';
 import { SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, useColorScheme, View } from 'react-native';
+import 'react-native-gesture-handler';
 import { Provider } from 'react-redux'
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import { Colors, DebugInstructions, Header, LearnMoreLinks, ReloadInstructions, } from 'react-native/Libraries/NewAppScreen';
 import ReduxStore from './src/store'
 import { AppButton, Grid, Col, Row, StateStatus } from "./src/components"
+import Router from './src/router';
 
+const Stack = createStackNavigator();
 
 const Section = ({ children, title }): Node => {
     const isDarkMode = useColorScheme() === 'dark';
@@ -32,6 +37,15 @@ const Section = ({ children, title }): Node => {
     );
 };
 
+const HomeScreen = () => {
+    return <View><Text onPress={() => {
+    }}>sdfsfs</Text></View>
+};
+const HomeScreen2 = () => {
+    return <View><Text>qqqq</Text></View>
+};
+
+
 const App = () => {
     const isDarkMode = useColorScheme() === 'dark';
     const backgroundStyle = {
@@ -45,7 +59,7 @@ const App = () => {
                     contentInsetAdjustmentBehavior="automatic"
                     style={backgroundStyle}>
                     <Header />
-                    <StateStatus/>
+                    <StateStatus />
                     <View
                         style={{
                             backgroundColor: isDarkMode ? Colors.black : Colors.white,
