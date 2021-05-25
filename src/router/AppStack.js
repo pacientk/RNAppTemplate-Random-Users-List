@@ -1,28 +1,27 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { createDrawerNavigator, useIsDrawerOpen } from '@react-navigation/drawer';
+// import { createDrawerNavigator, useIsDrawerOpen } from '@react-navigation/drawer';
 
 import * as types from './types';
-import { HomeScreen, GridAndComponents } from '../screens';
-import { TopHeader, DrawerSideMenu, TopHeaderShort } from '../components';
+import { HomeScreen } from '../screens';
+// import { TopHeader, DrawerSideMenu, TopHeaderShort } from '../components';
 import { createStackNavigator } from "@react-navigation/stack"
 import { FadeInOutAnimation } from "./config"
 
-const Drawer = createDrawerNavigator();
-const IntroStack = createStackNavigator();
+// const Drawer = createDrawerNavigator();
+const AppStack = createStackNavigator();
 
 const AppNavigator = ({ navigation }) => {
 
     return (
         <>
-            <IntroStack.Navigator
-                initialRouteName={types.SPLASH_SCREEN}
-                // initialRouteName={types.REGISTER_SUCCESS_SCREEN}
+            <AppStack.Navigator
+                initialRouteName={types.HOME_SCREEN}
                 headerMode="screen"
                 screenOptions={{
                     ...FadeInOutAnimation,
                     gestureEnabled: false,
-                    header: (props) => <TopHeaderShort {...props} />,
+                    // header: (props) => <TopHeaderShort {...props} />,
                 }}>
                 {/*<IntroStack.Screen*/}
                 {/*    name={types.SPLASH_SCREEN}*/}
@@ -33,15 +32,15 @@ const AppNavigator = ({ navigation }) => {
                 {/*    }}*/}
                 {/*/>*/}
 
-                <IntroStack.Screen
-                    name={types.WELCOME_SCREEN}
-                    component={WelcomeScreen}
+                <AppStack.Screen
+                    name={types.HOME_SCREEN}
+                    component={HomeScreen}
                     options={{
-                        headerShown: false,
-                        title: 'Welcome Page',
+                        // headerShown: false,
+                        title: 'Welcome',
                     }}
                 />
-            </IntroStack.Navigator>
+            </AppStack.Navigator>
 
             {/*<Drawer.Navigator*/}
             {/*    initialRouteName={types.HOME_SCREEN}*/}
