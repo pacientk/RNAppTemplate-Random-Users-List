@@ -9,7 +9,7 @@ function* callUsers(params) {
     const page = 1;
     const { response, timeout } = yield race({
         response: call(fetchRandomUserApi, page),
-        // timeout: delay(1500)
+        // timeout: delay(3000)
     });
 
     if (response) {

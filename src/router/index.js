@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Text } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { navigationRef } from './rootNavigation';
 
 import * as types from './types';
@@ -15,11 +15,12 @@ import AppStack from "./AppStack"
 // import { AccessibilityInfo } from 'react-native';
 // import { QuickViewPasswordEntranceScreen } from '../screens';
 // import { getConfig } from '../utilities/utilities';
+import { UsersActions } from "../store/actions"
 
 const RootStack = createStackNavigator();
 
 const RootNavigator = () => {
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     // const netInfo = useNetInfo();
 
     // const hasConnection = netInfo.isConnected && netInfo.isInternetReachable;
@@ -31,9 +32,9 @@ const RootNavigator = () => {
     // Storyboard.start(getConfig().glassboxUrl, getConfig().glassboxTestUUID, false, true); // TODO: update to handle test/prod switch
     // };
 
-    // useEffect(() => {
-    //     dispatch(startUpSaga()); // initialize app before screens shown.
-    // }, []);
+    useEffect(() => {
+        dispatch(UsersActions.setUsers());
+    }, []);
 
     return (
         <RootStack.Navigator

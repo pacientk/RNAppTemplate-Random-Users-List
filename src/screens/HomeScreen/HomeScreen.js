@@ -1,147 +1,85 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
-import { View, StyleSheet, Text, ScrollView, ActivityIndicator } from 'react-native';
+import { View, Image, StyleSheet, FlatList, ScrollView, ActivityIndicator, Text, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppButton, Grid, Row, Col } from '../../components';
 import styles from '../../utilites/GStyles';
 import { UsersActions } from "../../store/actions"
-
-const Section = ({ children, title }): Node => {
-    return (
-        <View style={styles.sectionContainer}>
-            <Text
-                style={[
-                    styles.sectionTitle,
-                    {
-                        color: 'black',
-                    },
-                ]}>
-                {title}
-            </Text>
-            <Text
-                style={[
-                    styles.sectionDescription,
-                    {
-                        color: 'black',
-                    },
-                ]}>
-                {children}
-            </Text>
-        </View>
-    );
-};
+import { testReduxStoreSelector, usersStoreSelector } from "../../store/selectors"
 
 const renderLoading = () => {
     return (
         <View style={{ flex: 1, justifyContent: "center" }}>
-            <ActivityIndicator size="large" color={colors.dark_blue} />
+            <ActivityIndicator size="large" color={'#1f618d'} />
         </View>
     );
 }
 
-const HomeScreen = ({ navigation }) => {
-    const dispatch = useDispatch()
+const renderUser = (user) => {
+    return (
+        <TouchableOpacity style={{borderWidth: 1}} onPress={()=> alert("@@@@ ")}>
+            <View style={[styles.flexRow, { marginTop: 10, marginBottom: 10 }]}>
+                <Image style={{ width: 40, height: 40, borderRadius: 20 }} source={{
+                    uri: user.item.picture.thumbnail,
+                }} />
+                <Text>
+                    <Text>{user.item.name.first} </Text>
+                    <Text>{user.item.name.last}</Text>
+                </Text>
+            </View>
+        </TouchableOpacity>
+    )
+};
 
-    useEffect(() => {
-        dispatch(UsersActions.setUsers());
-    }, [])
+
+const keyExtractor = (user, index) => index.toString()
+
+const HomeScreen = ({ navigation }) => {
+    const usersList = useSelector(usersStoreSelector)
+
 
     return (
         <View style={s.container}>
-            <ScrollView
-                contentInsetAdjustmentBehavior="automatic"
-                // style={backgroundStyle}
-            >
+            {/*<ScrollView*/}
+            {/*    contentInsetAdjustmentBehavior="automatic"*/}
+            {/*    // style={backgroundStyle}*/}
+            {/*>*/}
+            {/*<Grid style={[styles.flex, {borderWidth: 2}]}>*/}
+            {/*    <Row>*/}
+            {/*        <Col>*/}
+            {/*            <AppButton*/}
+            {/*                invertButtonColors*/}
+            {/*                disabled*/}
+            {/*                title={'Button #1'}*/}
+            {/*                onPress={() => alert('onPress')}*/}
+            {/*            />*/}
+            {/*        </Col>*/}
+            {/*        <Col>*/}
+            {/*            <AppButton*/}
+            {/*                title={'Button #2'}*/}
+            {/*                onPress={() => alert('onPress')}*/}
+            {/*            />*/}
+            {/*        </Col>*/}
+            {/*    </Row>*/}
+            {/*</Grid>*/}
+
+            {usersList?.length > 0
+                ?
                 <Grid>
-                    <Row>
-                        <Col>
-                            <AppButton
-                                invertButtonColors
-                                disabled
-                                title={'Button #1'}
-                                onPress={() => alert('onPress')}
-                            />
-                        </Col>
-                        <Col>
-                            <AppButton
-                                title={'Button #2'}
-                                onPress={() => alert('onPress')}
-                            />
-                        </Col>
-                    </Row>
-                    <Section title="Step One">
-                        Edit <Text style={styles.highlight}>App.js</Text> to change this
-                        screen and then come back to see your edits.
-                    </Section>
-                    <Section title="Step One">
-                        Edit <Text style={styles.highlight}>App.js</Text> to change this
-                        screen and then come back to see your edits.
-                    </Section>
-                    <Section title="Step One">
-                        Edit <Text style={styles.highlight}>App.js</Text> to change this
-                        screen and then come back to see your edits.
-                    </Section>
-                    <Section title="Step One">
-                        Edit <Text style={styles.highlight}>App.js</Text> to change this
-                        screen and then come back to see your edits.
-                    </Section>
-                    <Section title="Step One">
-                        Edit <Text style={styles.highlight}>App.js</Text> to change this
-                        screen and then come back to see your edits.
-                    </Section>
-                    <Section title="Step One">
-                        Edit <Text style={styles.highlight}>App.js</Text> to change this
-                        screen and then come back to see your edits.
-                    </Section>
-                    <Section title="Step One">
-                        Edit <Text style={styles.highlight}>App.js</Text> to change this
-                        screen and then come back to see your edits.
-                    </Section>
-                    <Section title="Step One">
-                        Edit <Text style={styles.highlight}>App.js</Text> to change this
-                        screen and then come back to see your edits.
-                    </Section>
-                    <Section title="Step One">
-                        Edit <Text style={styles.highlight}>App.js</Text> to change this
-                        screen and then come back to see your edits.
-                    </Section>
-                    <Section title="Step One">
-                        Edit <Text style={styles.highlight}>App.js</Text> to change this
-                        screen and then come back to see your edits.
-                    </Section>
-                    <Section title="Step One">
-                        Edit <Text style={styles.highlight}>App.js</Text> to change this
-                        screen and then come back to see your edits.
-                    </Section>
-                    <Section title="Step One">
-                        Edit <Text style={styles.highlight}>App.js</Text> to change this
-                        screen and then come back to see your edits.
-                    </Section>
-                    <Section title="Step One">
-                        Edit <Text style={styles.highlight}>App.js</Text> to change this
-                        screen and then come back to see your edits.
-                    </Section>
-                    <Section title="Step One">
-                        Edit <Text style={styles.highlight}>App.js</Text> to change this
-                        screen and then come back to see your edits.
-                    </Section>
-                    <Section title="Step One">
-                        Edit <Text style={styles.highlight}>App.js</Text> to change this
-                        screen and then come back to see your edits.
-                    </Section>
-                    <Section title="Step One">
-                        Edit <Text style={styles.highlight}>App.js</Text> to change this
-                        screen and then come back to see your edits.
-                    </Section>
-                    <Section title="Step One">
-                        Edit <Text style={styles.highlight}>App.js</Text> to change this
-                        screen and then come back to see your edits.
-                    </Section>
-                    <Section title="Step One">
-                        Edit <Text style={styles.highlight}>App.js</Text> to change this
-                        screen and then come back to see your edits.
-                    </Section>
+                    <FlatList
+                        style={styles.container}
+                        data={usersList}
+                        renderItem={renderUser}
+                        keyExtractor={(item, index) => `item ${item.date} ${index}`}
+                        // onEndReached={() => this.props.fetchRandomUsers()}
+                        onEndReachedThreshold={0.8}
+                        // ListFooterComponent={renderLoading}
+                    />
                 </Grid>
-            </ScrollView>
+                :
+                renderLoading()
+            }
+
+            {/*</ScrollView>*/}
         </View>
     );
 };
