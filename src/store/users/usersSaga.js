@@ -14,11 +14,11 @@ function* callUsers() {
         if (res) {
             yield put(UsersActions.setUsersSuccess(res.data.results))
         } else if (error)
-            yield put(types.SET_USERS("Error Fetching Data!"));
+            yield put(types.GET_USERS("Error Fetching Data!"));
     } else if (timeout)
-        yield put(types.SET_USERS("5 Sec Timeout!"));
+        yield put(types.GET_USERS("5 Sec Timeout!"));
 }
 
 export default function* startUsersSaga() {
-    yield takeLatest(types.SET_USERS, callUsers);
+    yield takeLatest(types.GET_USERS, callUsers);
 }

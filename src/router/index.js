@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { navigationRef } from './rootNavigation';
-
 import * as types from './types';
 import { FadeInOutAnimation } from './config';
 import AppStack from "./AppStack"
