@@ -20,7 +20,7 @@ const AppNavigator = ({ navigation }) => {
                 headerMode="screen"
                 screenOptions={{
                     ...FadeInOutAnimation,
-                    gestureEnabled: false,
+                    // gestureEnabled: false,
                 }}>
 
                 {/*<IntroStack.Screen*/}
@@ -45,7 +45,7 @@ const AppNavigator = ({ navigation }) => {
                     name={types.USER_DETAILS_SCREEN}
                     component={UserDetails}
                     options={{
-                        // headerShown: false,
+                        headerShown: false,
                         title: 'User Details',
                     }}
                 />

@@ -1,15 +1,28 @@
 import React from 'react';
-import { View, Image, StyleSheet, ScrollView, Text, } from 'react-native';
+import { View, Image, StyleSheet, ScrollView, Text, Pressable } from 'react-native';
 import { Grid, Row, Col } from '../../components';
 import styles from '../../utilites/GStyles';
+
+const backButton = (navigation) => {
+    return (
+        <Pressable style={s.backBtnHolder} onPress={() => navigation.goBack()}>
+            <View style={styles.flexRow}>
+                <Text style={{ fontSize: 28, lineHeight: 32 }}>←</Text>
+                <Text style={{ fontSize: 16, lineHeight: 30, marginLeft: 8 }}>Back to List</Text>
+            </View>
+        </Pressable>
+    )
+}
 
 const UserDetails = ({ route, navigation }) => {
     const { user } = route.params;
 
     return (
         <View style={s.container}>
+            {backButton(navigation)}
+
             <ScrollView contentInsetAdjustmentBehavior="automatic">
-                <Grid style={[styles.flex, { marginTop: 30 }]}>
+                <Grid style={[styles.flex, { marginTop: 50 }]}>
                     <Row>
                         <Col style={styles.alignCenter}>
                             <Image
@@ -46,9 +59,9 @@ const UserDetails = ({ route, navigation }) => {
                         </Col>
                         <Col>
                             <Text style={s.detailsTextTitle}>Address</Text>
-                            <Text style={[s.detailsText, { marginBottom: 6 }]}>{user.location.street.name}, {user.location.street.number}</Text>
-                            <Text style={[s.detailsText, { marginBottom: 6 }]}>{user.location.city}  </Text>
-                            <Text style={s.detailsText}>{user.location.country}, {user.location.postcode}  </Text>
+                            <Text style={[s.detailsText, { marginBottom: 6 }]}>{user.location.street.number}{'\u00A0'}{user.location.street.name}</Text>
+                            <Text style={[s.detailsText, { marginBottom: 6 }]}>{user.location.city}</Text>
+                            <Text style={s.detailsText}>{user.location.country}, {user.location.postcode}</Text>
                         </Col>
                     </View>
                 </Grid>
@@ -61,6 +74,11 @@ const s = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: styles.$white,
+    },
+    backBtnHolder: {
+        position: 'absolute',
+        marginLeft: 18,
+        zIndex: 999
     },
     detailsHolder: {
         borderTopColor: styles.$spun_pearl,
