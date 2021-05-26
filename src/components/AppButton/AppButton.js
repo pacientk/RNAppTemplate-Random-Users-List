@@ -13,7 +13,6 @@ const AppButton = (props) => {
 
     const onPressAction = () => {
         dispatch(BasicActions.testReduxStore(!testReduxStore.payload));
-        console.log("@@@@ users", users)
         props.onPress();
     };
 

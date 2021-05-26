@@ -37,7 +37,7 @@ const AppNavigator = ({ navigation }) => {
                     component={HomeScreen}
                     options={{
                         // headerShown: false,
-                        title: 'Welcome',
+                        title: 'Contact List',
                     }}
                 />
 

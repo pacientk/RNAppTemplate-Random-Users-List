@@ -7,9 +7,8 @@ import { UsersActions } from "../../store/actions"
 import { testReduxStoreSelector, usersStoreSelector } from "../../store/selectors"
 
 const UserDetails = ({ route, navigation }) => {
-
     const { user } = route.params;
-    console.log("@@@@ userItem", user)
+
     return (
         <View style={s.container}>
             <ScrollView

@@ -1,22 +1,33 @@
-import React, { useEffect } from 'react';
-import { Text, StyleSheet, Image, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Text, StyleSheet, Image, View, ActivityIndicator } from 'react-native';
 import { CommonActions } from '@react-navigation/native';
 import styles from '../../utilites/GStyles';
 import { Grid, Row, Col } from "../../components"
-import { navigate } from "../../router/rootNavigation"
 import * as types from "../../router/types"
+import { useSelector } from "react-redux"
+import { usersStoreSelector } from "../../store/selectors"
+
+const renderLoading = () => {
+    return (
+        <View style={{ flex: 1, justifyContent: "center", marginTop: 20 }}>
+            <ActivityIndicator size="small" color={'gray'} />
+        </View>
+    );
+}
 
 const SplashScreen = ({ navigation }) => {
+    const usersList = useSelector(usersStoreSelector)
 
     useEffect(() => {
+
         setTimeout(() => {
-            navigation.dispatch(
+            usersList?.length > 0 && navigation.dispatch(
                 CommonActions.reset({
                     index: 0,
                     routes: [{ name: types.APP_STACK }],
                 }),
             );
-        }, 2000)
+        }, 2200)
     })
 
     return (
@@ -31,7 +42,9 @@ const SplashScreen = ({ navigation }) => {
                     <Text style={s.myName}>Kirill Ter</Text>
                 </Col>
             </Row>
-
+            <Row style={styles.flex0}>
+                {renderLoading()}
+            </Row>
             <View style={s.creditsHolder}>
                 <Text style={s.creditsTitle}>Exam for:</Text>
                 <Row style={[styles.flex0]}>
@@ -43,6 +56,7 @@ const SplashScreen = ({ navigation }) => {
                     </Col>
                 </Row>
             </View>
+
         </Grid>
     );
 };
