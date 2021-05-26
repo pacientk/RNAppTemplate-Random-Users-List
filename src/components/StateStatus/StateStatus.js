@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import GStyles from '../../utilites/GStyles';
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { testReduxStoreSelector } from "../../store/selectors"
+import { UsersActions } from "../../store/actions"
 
 const StateStatus = (props) => {
     const { titleStyle } = props;
+    const dispatch = useDispatch()
     const testReduxStore = useSelector(testReduxStoreSelector)
+
+    useEffect(()=>{
+        dispatch(UsersActions.setUsers());
+    },[])
 
     return (
         <View style={{

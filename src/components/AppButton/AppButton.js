@@ -3,12 +3,13 @@ import { TouchableOpacity, StyleSheet, Text } from 'react-native';
 import GStyles from '../../utilites/GStyles';
 import { useDispatch, useSelector } from "react-redux"
 import { BasicActions } from "../../store/actions"
-import { testReduxStoreSelector } from "../../store/selectors"
+import { testReduxStoreSelector, usersStoreSelector } from "../../store/selectors"
 
 const AppButton = (props) => {
     const { disabled, containerStyle, invertButtonColors, titleStyle } = props;
     const dispatch = useDispatch()
     const testReduxStore = useSelector(testReduxStoreSelector)
+    const users = useSelector(usersStoreSelector)
 
     const onPressAction = () => {
         dispatch(BasicActions.testReduxStore(!testReduxStore.payload));
