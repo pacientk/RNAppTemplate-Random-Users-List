@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 // import { createDrawerNavigator, useIsDrawerOpen } from '@react-navigation/drawer';
 
 import * as types from './types';
-import { HomeScreen } from '../screens';
+import { HomeScreen, UserDetails } from '../screens';
 // import { TopHeader, DrawerSideMenu, TopHeaderShort } from '../components';
 import { createStackNavigator } from "@react-navigation/stack"
 import { FadeInOutAnimation } from "./config"
@@ -38,6 +38,15 @@ const AppNavigator = ({ navigation }) => {
                     options={{
                         // headerShown: false,
                         title: 'Welcome',
+                    }}
+                />
+
+                <AppStack.Screen
+                    name={types.USER_DETAILS_SCREEN}
+                    component={UserDetails}
+                    options={{
+                        // headerShown: false,
+                        title: 'User Details',
                     }}
                 />
             </AppStack.Navigator>

@@ -5,6 +5,7 @@ import { AppButton, Grid, Row, Col } from '../../components';
 import styles from '../../utilites/GStyles';
 import { UsersActions } from "../../store/actions"
 import { testReduxStoreSelector, usersStoreSelector } from "../../store/selectors"
+import * as types from "../../router/types"
 
 const renderLoading = () => {
     return (
@@ -14,16 +15,19 @@ const renderLoading = () => {
     );
 }
 
-const renderUser = (user) => {
+const renderUser = (item, navigation) => {
+    const userItem = item.item
+    const navigateTo = () => navigation.navigate(types.USER_DETAILS_SCREEN, { user: userItem })
+
     return (
-        <TouchableOpacity style={{borderWidth: 1}} onPress={()=> alert("@@@@ ")}>
+        <TouchableOpacity style={{ borderWidth: 1 }} onPress={() => navigateTo()}>
             <View style={[styles.flexRow, { marginTop: 10, marginBottom: 10 }]}>
                 <Image style={{ width: 40, height: 40, borderRadius: 20 }} source={{
-                    uri: user.item.picture.thumbnail,
+                    uri: userItem.picture.thumbnail,
                 }} />
                 <Text>
-                    <Text>{user.item.name.first} </Text>
-                    <Text>{user.item.name.last}</Text>
+                    <Text>{userItem.name.first} </Text>
+                    <Text>{userItem.name.last}</Text>
                 </Text>
             </View>
         </TouchableOpacity>
@@ -68,8 +72,8 @@ const HomeScreen = ({ navigation }) => {
                     <FlatList
                         style={styles.container}
                         data={usersList}
-                        renderItem={renderUser}
-                        keyExtractor={(item, index) => `item ${item.date} ${index}`}
+                        renderItem={(item) => renderUser(item, navigation)}
+                        keyExtractor={(item, index) => `item ${index}`}
                         // onEndReached={() => this.props.fetchRandomUsers()}
                         onEndReachedThreshold={0.8}
                         // ListFooterComponent={renderLoading}

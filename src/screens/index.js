@@ -1,2 +1,7 @@
 import HomeScreen from './HomeScreen';
-export { HomeScreen };
+import UserDetails from './UserDetails';
+
+export {
+    HomeScreen,
+    UserDetails
+};
