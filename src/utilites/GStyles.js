@@ -1,16 +1,15 @@
-const FONTS = {
-    Regular: 'Assistant-Regular',
-    Light: 'Assistant-Light',
-    ExtraLight: 'Assistant-ExtraLight',
-    Bold: 'Assistant-Bold',
-    SemiBold: 'Assistant-SemiBold',
-    ExtraBold: 'Assistant-ExtraBold',
-};
+// const FONTS = {
+//     Regular: 'Assistant-Regular',
+//     Light: 'Assistant-Light',
+//     ExtraLight: 'Assistant-ExtraLight',
+//     Bold: 'Assistant-Bold',
+//     SemiBold: 'Assistant-SemiBold',
+//     ExtraBold: 'Assistant-ExtraBold',
+// };
 
 const COLORS = {
     $navy_blue: 'rgb(2, 6, 126)',
-    // $blue: 'rgb(53, 42, 255)',
-    $blue: 'rgb(69,101,246)', // duplicated from $lightish_blue︎
+    $blue: 'rgb(53, 42, 255)',
     $lightish_blue: 'rgb(69,101,246)',
     $lighter_purple: 'rgb(162,64,247)',
     $ship_grey: 'rgb(74, 68, 83)',
@@ -104,20 +103,10 @@ const LAYOUT = {
         paddingBottom: 0,
         paddingTop: 0,
     },
-
-    // !!! Basics REQUIRED style props for Text !!!
-    mainTextStyle: {
-        fontSize: 18,
-        lineHeight: 24,
-        fontFamily: FONTS.Regular,
-        color: COLORS.$ship_grey,
-        textAlign: 'left',
-        writingDirection: 'rtl',
-    },
 };
 
 export default {
-    ...FONTS,
+    // ...FONTS,
     ...COLORS,
     ...LAYOUT,
 };

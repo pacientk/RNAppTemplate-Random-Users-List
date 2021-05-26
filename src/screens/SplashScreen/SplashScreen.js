@@ -10,7 +10,7 @@ import { usersStoreSelector } from "../../store/selectors"
 const renderLoading = () => {
     return (
         <View style={{ flex: 1, justifyContent: "center", marginTop: 20 }}>
-            <ActivityIndicator size="small" color={'gray'} />
+            <ActivityIndicator size="small" color={styles.$spun_pearl} />
         </View>
     );
 }
@@ -79,7 +79,7 @@ const s = StyleSheet.create({
         width: '60%',
         marginTop: 50,
         borderTopWidth: .5,
-        borderColor: 'gray',
+        borderColor: styles.$spun_pearl,
         alignItems: 'center'
     },
     creditsTitle: {

@@ -1,10 +1,9 @@
 import * as types from './usersTypes';
 
 export const setUsers = () => ({
-    type: types.SET_USERS,
-    // payload: users
+    type: types.GET_USERS,
 });
 export const setUsersSuccess = (users) => ({
-    type: types.SET_USERS_SUCCESS,
+    type: types.GET_USERS_SUCCESS,
     payload: users
 });

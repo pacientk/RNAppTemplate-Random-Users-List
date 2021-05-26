@@ -1,14 +1,9 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-// import { createDrawerNavigator, useIsDrawerOpen } from '@react-navigation/drawer';
-
 import * as types from './types';
-import { HomeScreen, UserDetails } from '../screens';
-// import { TopHeader, DrawerSideMenu, TopHeaderShort } from '../components';
 import { createStackNavigator } from "@react-navigation/stack"
+import { HomeScreen, UserDetails } from '../screens';
 import { FadeInOutAnimation } from "./config"
 
-// const Drawer = createDrawerNavigator();
 const AppStack = createStackNavigator();
 
 const AppNavigator = ({ navigation }) => {
@@ -20,17 +15,8 @@ const AppNavigator = ({ navigation }) => {
                 headerMode="screen"
                 screenOptions={{
                     ...FadeInOutAnimation,
-                    gestureEnabled: false,
+                    // gestureEnabled: false,
                 }}>
-
-                {/*<IntroStack.Screen*/}
-                {/*    name={types.SPLASH_SCREEN}*/}
-                {/*    component={SplashScreen}*/}
-                {/*    options={{*/}
-                {/*        title: null,*/}
-                {/*        headerShown: false,*/}
-                {/*    }}*/}
-                {/*/>*/}
 
                 <AppStack.Screen
                     name={types.HOME_SCREEN}
@@ -45,7 +31,7 @@ const AppNavigator = ({ navigation }) => {
                     name={types.USER_DETAILS_SCREEN}
                     component={UserDetails}
                     options={{
-                        // headerShown: false,
+                        headerShown: false,
                         title: 'User Details',
                     }}
                 />
