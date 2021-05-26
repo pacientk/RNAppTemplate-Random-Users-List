@@ -12,7 +12,7 @@ const IntroNavigator = ({ navigation }) => {
     return (
         <>
             <IntroStack.Navigator
-                initialRouteName={types.HOME_SCREEN}
+                initialRouteName={types.SPLASH_SCREEN}
                 headerMode="screen"
                 screenOptions={{
                     ...FadeInOutAnimation,

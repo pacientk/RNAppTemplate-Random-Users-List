@@ -21,8 +21,8 @@ const AppNavigator = ({ navigation }) => {
                 screenOptions={{
                     ...FadeInOutAnimation,
                     gestureEnabled: false,
-                    // header: (props) => <TopHeaderShort {...props} />,
                 }}>
+
                 {/*<IntroStack.Screen*/}
                 {/*    name={types.SPLASH_SCREEN}*/}
                 {/*    component={SplashScreen}*/}
@@ -50,35 +50,6 @@ const AppNavigator = ({ navigation }) => {
                     }}
                 />
             </AppStack.Navigator>
-
-            {/*<Drawer.Navigator*/}
-            {/*    initialRouteName={types.HOME_SCREEN}*/}
-            {/*    screenOptions={{*/}
-            {/*        headerShown: true,*/}
-            {/*        // header: (props) => <TopHeader navigation={navigation} {...props} />,*/}
-            {/*        gestureEnabled: false,*/}
-            {/*    }}*/}
-            {/*    drawerContent={(props) => <DrawerSideMenu {...props} />}*/}
-            {/*    drawerContentOptions={{*/}
-            {/*        activeTintColor: '#e91e63',*/}
-            {/*        itemStyle: { marginVertical: 10, borderWidth: 1 },*/}
-            {/*    }}*/}
-            {/*    drawerStyle={{ width: 320 }}>*/}
-            {/*    <Drawer.Screen*/}
-            {/*        name={types.HOME_SCREEN}*/}
-            {/*        component={HomeScreen}*/}
-            {/*        options={{*/}
-            {/*            title: 'Home Page',*/}
-            {/*        }}*/}
-            {/*    />*/}
-            {/*    <Drawer.Screen*/}
-            {/*        name={types.GRID_COMPS_SCREEN}*/}
-            {/*        component={GridAndComponents}*/}
-            {/*        options={{*/}
-            {/*            title: 'Grid & Components Page',*/}
-            {/*        }}*/}
-            {/*    />*/}
-            {/*</Drawer.Navigator>*/}
         </>
 
     );
