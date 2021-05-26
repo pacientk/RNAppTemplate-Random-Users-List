@@ -1,39 +1,57 @@
-import React, { useState, useRef, useEffect, useMemo } from 'react';
-import { View, Image, StyleSheet, FlatList, ScrollView, ActivityIndicator, Text, TouchableOpacity } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppButton, Grid, Row, Col } from '../../components';
+import React from 'react';
+import { View, Image, StyleSheet, ScrollView, Text, } from 'react-native';
+import { Grid, Row, Col } from '../../components';
 import styles from '../../utilites/GStyles';
-import { UsersActions } from "../../store/actions"
-import { testReduxStoreSelector, usersStoreSelector } from "../../store/selectors"
 
 const UserDetails = ({ route, navigation }) => {
     const { user } = route.params;
 
     return (
         <View style={s.container}>
-            <ScrollView
-                contentInsetAdjustmentBehavior="automatic"
-                // style={backgroundStyle}
-            >
-                <Grid style={[styles.flex, { borderWidth: 2 }]}>
+            <ScrollView contentInsetAdjustmentBehavior="automatic">
+                <Grid style={[styles.flex, { marginTop: 30 }]}>
                     <Row>
-                        <Col>
-                            <AppButton
-                                invertButtonColors
-                                disabled
-                                title={`${user.name.first} ${ user.name.last}`}
-                                onPress={() => alert('onPress')}
-                            />
-                        </Col>
-                        <Col>
-                            <AppButton
-                                title={'Button #2'}
-                                onPress={() => alert('onPress')}
-                            />
+                        <Col style={styles.alignCenter}>
+                            <Image
+                                resizeMode={'contain'}
+                                style={{ width: 150, height: 150, borderRadius: 75 }}
+                                source={{ uri: user.picture.large }} />
                         </Col>
                     </Row>
-                </Grid>
 
+                    <Row>
+                        <Col style={styles.alignCenter}>
+                            <Text style={{
+                                fontSize: 16,
+                                color: styles.$spun_pearl,
+                                marginTop: 24
+                            }}>{user.name.title}.{'\u00A0'}</Text>
+                            <Text style={{
+                                fontSize: 24,
+                                fontWeight: 'bold',
+                            }}>{user.name.first}{'\u00A0'}{user.name.last}</Text>
+                        </Col>
+                    </Row>
+
+                    <View style={s.detailsHolder}>
+                        <Col>
+                            <Text style={s.detailsTextTitle}>Phone</Text>
+                            <Text style={s.detailsText}>{user.phone}</Text>
+                            <Text style={s.detailsTextTitle}>Cell</Text>
+                            <Text style={s.detailsText}>{user.cell}</Text>
+                        </Col>
+                        <Col>
+                            <Text style={s.detailsTextTitle}>Email</Text>
+                            <Text style={s.detailsText}>{user.email}</Text>
+                        </Col>
+                        <Col>
+                            <Text style={s.detailsTextTitle}>Address</Text>
+                            <Text style={[s.detailsText, { marginBottom: 6 }]}>{user.location.street.name}, {user.location.street.number}</Text>
+                            <Text style={[s.detailsText, { marginBottom: 6 }]}>{user.location.city}  </Text>
+                            <Text style={s.detailsText}>{user.location.country}, {user.location.postcode}  </Text>
+                        </Col>
+                    </View>
+                </Grid>
             </ScrollView>
         </View>
     );
@@ -44,42 +62,20 @@ const s = StyleSheet.create({
         flex: 1,
         backgroundColor: styles.$white,
     },
-    goodEveningTitle: {
-        fontSize: 22,
-        lineHeight: 28,
-        // fontFamily: styles.Regular,
-        color: styles.$navy_blue,
-        textAlign: 'left',
-        writingDirection: 'rtl',
-        marginLeft: 16,
+    detailsHolder: {
+        borderTopColor: styles.$spun_pearl,
+        borderTopWidth: .5,
+        marginTop: 20,
+        marginBottom: 20,
+        paddingTop: 20
     },
-    joinQuickViewContainer: {
-        flex: 0,
-        flexDirection: 'row',
-        borderTopWidth: 1,
-        borderTopColor: styles.$alto,
-        borderBottomWidth: 1,
-        borderBottomColor: styles.$alto,
-        paddingTop: 6,
-        paddingBottom: 20,
-        backgroundColor: styles.$light_gray,
-        marginVertical: 30,
-    },
-    joinQuickViewTitle: {
-        fontSize: 26,
-        lineHeight: 34,
-        fontFamily: styles.SemiBold,
-        color: styles.$navy_blue,
-        textAlign: 'left',
-        writingDirection: 'rtl',
-    },
-    joinQuickViewSubTitle: {
+    detailsText: {
         fontSize: 18,
-        lineHeight: 24,
-        // fontFamily: styles.Regular,
-        color: styles.$ship_grey,
-        textAlign: 'left',
-        writingDirection: 'rtl',
+        marginBottom: 20,
+    },
+    detailsTextTitle: {
+        fontSize: 14,
+        color: styles.$spun_pearl
     },
 });
 

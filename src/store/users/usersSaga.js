@@ -1,10 +1,9 @@
 import { takeLatest, put, take, call, select, race, delay } from 'redux-saga/effects';
 import * as types from './usersTypes';
-import { setUsers } from "./usersActions"
 import { fetchUserApi } from "../../common/usersApi"
 import { UsersActions } from "../actions"
 
-function* callUsers(params) {
+function* callUsers() {
     const { response, timeout } = yield race({
         response: call(fetchUserApi),
         // timeout: delay(3000)
