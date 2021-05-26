@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     },
     safeBottom: {
         flex: 1,
-        backgroundColor: 'pink'
+        // backgroundColor: 'pink'
     },
 });
 
