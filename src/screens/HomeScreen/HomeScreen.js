@@ -48,6 +48,7 @@ const HomeScreen = ({ navigation }) => {
                 ?
                 <Grid>
                     <FlatList
+                        contentContainerStyle={{paddingTop: 20}}
                         data={usersList}
                         renderItem={(item) => renderUser(item, navigation)}
                         keyExtractor={(item, index) => `item ${index}`}
@@ -64,7 +65,7 @@ const HomeScreen = ({ navigation }) => {
 const s = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 20,
+        // paddingTop: 20,
         backgroundColor: styles.$white,
     },
 });
