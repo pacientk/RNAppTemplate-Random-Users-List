@@ -114,7 +114,6 @@
 				B9EF61B0E96628718DF3B4CB /* Pods-RNAppTemplate-RNAppTemplateTests.debug.xcconfig */,
 				AC26E0D2B4A2383C09B9388C /* Pods-RNAppTemplate-RNAppTemplateTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
