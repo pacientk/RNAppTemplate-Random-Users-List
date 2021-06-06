@@ -5,21 +5,21 @@ import { useDispatch, useSelector } from "react-redux"
 import { BasicActions } from "../../store/actions"
 import { testReduxStoreSelector, usersStoreSelector } from "../../store/selectors"
 
-const Counter = ({ time, pouseCounter }) => {
+const Counter = ({ time, pauseCounter }) => {
     const [count, setCount] = useState(0)
 
-    // let timer = useRef()
+    let timer = useRef(null)
 
-    const ms = time ? time * 1000 : 1000
+    const ms = time > 0 ? time * 1000 : 1000
 
-    const timer = setTimeout(() => {
+    timer.current = setTimeout(() => {
         let d = count
         d = d + 1
         setCount(d)
     }, ms)
 
-    if (pouseCounter) {
-        clearTimeout(timer)
+    if (pauseCounter) {
+        clearTimeout(timer.current)
     }
 
     return (

@@ -9,10 +9,8 @@ import { set } from "react-native-reanimated"
 
 
 const KuturaScreen = ({ navigation }) => {
-    const [timeSec, setTimeSec] = useState(0)
+    const [timeSec, setTimeSec] = useState('0')
     const [isPaused, setIsPaused] = useState(false)
-
-    console.log("@@@@ isPaused",isPaused)
 
     const onChangeNumber = (num) => {
         if (num.length > 0)
@@ -31,14 +29,14 @@ const KuturaScreen = ({ navigation }) => {
                         style={s.input}
                         onChangeText={onChangeNumber}
                         value={timeSec}
-                        placeholder="useless placeholder"
+                        placeholder="Placeholder"
                         keyboardType="numeric"
                     />
 
                     <Button title={isPaused ? 'Unpause Counter' : 'Pause Counter'} onPress={pauseCounter} />
 
                     <Text>Counter:</Text>
-                    <Counter time={timeSec} pouseCounter={isPaused} />
+                    <Counter time={timeSec} pauseCounter={isPaused} />
                 </Col>
             </Grid>
         </View>
