@@ -1,7 +1,7 @@
 import React from 'react';
 import * as types from './types';
 import { createStackNavigator } from "@react-navigation/stack"
-import { HomeScreen, UserDetails } from '../screens';
+import { HomeScreen, UserDetails, KuturaScreen } from '../screens';
 import { FadeInOutAnimation } from "./config"
 
 const AppStack = createStackNavigator();
@@ -11,7 +11,7 @@ const AppNavigator = ({ navigation }) => {
     return (
         <>
             <AppStack.Navigator
-                initialRouteName={types.HOME_SCREEN}
+                initialRouteName={types.KULTURA_SCREEN}
                 headerMode="screen"
                 screenOptions={{
                     ...FadeInOutAnimation,
@@ -19,22 +19,31 @@ const AppNavigator = ({ navigation }) => {
                 }}>
 
                 <AppStack.Screen
-                    name={types.HOME_SCREEN}
-                    component={HomeScreen}
+                    name={types.KULTURA_SCREEN}
+                    component={KuturaScreen}
                     options={{
                         // headerShown: false,
                         title: 'Contact List',
                     }}
                 />
 
-                <AppStack.Screen
-                    name={types.USER_DETAILS_SCREEN}
-                    component={UserDetails}
-                    options={{
-                        headerShown: false,
-                        title: 'User Details',
-                    }}
-                />
+                {/*<AppStack.Screen*/}
+                {/*    name={types.HOME_SCREEN}*/}
+                {/*    component={HomeScreen}*/}
+                {/*    options={{*/}
+                {/*        // headerShown: false,*/}
+                {/*        title: 'Contact List',*/}
+                {/*    }}*/}
+                {/*/>*/}
+
+                {/*<AppStack.Screen*/}
+                {/*    name={types.USER_DETAILS_SCREEN}*/}
+                {/*    component={UserDetails}*/}
+                {/*    options={{*/}
+                {/*        headerShown: false,*/}
+                {/*        title: 'User Details',*/}
+                {/*    }}*/}
+                {/*/>*/}
             </AppStack.Navigator>
         </>
 

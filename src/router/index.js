@@ -20,7 +20,7 @@ const RootNavigator = () => {
 
     return (
         <RootStack.Navigator
-            initialRouteName={types.INTRO_STACK}
+            initialRouteName={types.APP_STACK}
             headerMode="float"
             screenOptions={{
                 ...FadeInOutAnimation,
