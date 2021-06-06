@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { TouchableOpacity, StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
 import GStyles from '../../utilites/GStyles';
 import { useDispatch, useSelector } from "react-redux"
 import { BasicActions } from "../../store/actions"
@@ -12,14 +12,14 @@ const Counter = ({ time, pauseCounter }) => {
 
     const ms = time > 0 ? time * 1000 : 1000
 
-    timer.current = setTimeout(() => {
-        let d = count
-        d = d + 1
-        setCount(d)
-    }, ms)
-
     if (pauseCounter) {
         clearTimeout(timer.current)
+    } else {
+        timer.current = setTimeout(() => {
+            let d = count
+            d = d + 1
+            setCount(d)
+        }, ms)
     }
 
     return (

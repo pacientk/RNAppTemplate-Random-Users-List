@@ -25,13 +25,13 @@ const KuturaScreen = ({ navigation }) => {
         <View style={s.container}>
             <Grid>
                 <Col>
-                    <TextInput
-                        style={s.input}
-                        onChangeText={onChangeNumber}
-                        value={timeSec}
-                        placeholder="Placeholder"
-                        keyboardType="numeric"
-                    />
+                    {/*<TextInput*/}
+                    {/*    style={s.input}*/}
+                    {/*    onChangeText={onChangeNumber}*/}
+                    {/*    value={timeSec}*/}
+                    {/*    placeholder="Placeholder"*/}
+                    {/*    keyboardType="numeric"*/}
+                    {/*/>*/}
 
                     <Button title={isPaused ? 'Unpause Counter' : 'Pause Counter'} onPress={pauseCounter} />
 
