@@ -25,7 +25,14 @@ const BlankScreen = () => {
         }
 
         if (val === '=') {
-            setValue(eval(value).toString());
+            try {
+                setValue(eval(value).toString());
+            } catch {
+                setValue('Error');
+                setTimeout(() => {
+                    setValue('0');
+                }, 2000);
+            }
         }
     };
 
