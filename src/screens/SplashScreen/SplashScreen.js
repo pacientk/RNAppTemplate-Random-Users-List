@@ -23,7 +23,7 @@ const SplashScreen = ({ navigation }) => {
                     routes: [{ name: types.APP_STACK }],
                 }),
             );
-        }, 2200);
+        }, 3200);
     });
 
     return (
