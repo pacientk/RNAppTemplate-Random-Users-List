@@ -5,14 +5,6 @@ import styles from '../../utilites/GStyles';
 import { Grid, Row, Col } from '../../components';
 import * as types from '../../router/types';
 
-const renderLoading = () => {
-    return (
-        <View style={{ flex: 1, justifyContent: 'center', marginTop: 20 }}>
-            <ActivityIndicator size="small" color={styles.$spun_pearl} />
-        </View>
-    );
-};
-
 const SplashScreen = ({ navigation }) => {
 
     useEffect(() => {
@@ -23,8 +15,16 @@ const SplashScreen = ({ navigation }) => {
                     routes: [{ name: types.APP_STACK }],
                 }),
             );
-        }, 3200);
+        }, 2000);
     });
+
+    const renderLoading = () => {
+        return (
+            <View style={{ flex: 1, justifyContent: 'center', marginTop: 20 }}>
+                <ActivityIndicator size="small" color={styles.$spun_pearl} />
+            </View>
+        );
+    };
 
     return (
         <Grid style={s.container}>

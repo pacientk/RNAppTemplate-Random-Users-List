@@ -1,8 +1,8 @@
 import React from 'react';
 import * as types from './types';
-import { createStackNavigator } from "@react-navigation/stack"
-import { HomeScreen, UserDetails } from '../screens';
-import { FadeInOutAnimation } from "./config"
+import { createStackNavigator } from '@react-navigation/stack';
+import { HomeScreen, UserDetails, BlankScreen } from '../screens';
+import { FadeInOutAnimation } from './config';
 
 const AppStack = createStackNavigator();
 
@@ -11,12 +11,21 @@ const AppNavigator = ({ navigation }) => {
     return (
         <>
             <AppStack.Navigator
-                initialRouteName={types.HOME_SCREEN}
+                initialRouteName={types.BLANK_SCREEN}
                 headerMode="screen"
                 screenOptions={{
                     ...FadeInOutAnimation,
                     // gestureEnabled: false,
                 }}>
+
+                <AppStack.Screen
+                    name={types.BLANK_SCREEN}
+                    component={BlankScreen}
+                    options={{
+                        // headerShown: false,
+                        title: 'Blank Screen',
+                    }}
+                />
 
                 <AppStack.Screen
                     name={types.HOME_SCREEN}
