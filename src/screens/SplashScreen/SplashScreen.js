@@ -15,7 +15,7 @@ const SplashScreen = ({ navigation }) => {
                     routes: [{ name: types.APP_STACK }],
                 }),
             );
-        }, 2000);
+        }, 500);
     });
 
     const renderLoading = () => {
