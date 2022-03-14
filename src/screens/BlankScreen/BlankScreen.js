@@ -1,107 +1,127 @@
 import React, { useState } from 'react';
-import { Text, TextInput, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
-import { Col, Grid, Row } from '../../components';
-import styles from '../../utilites/GStyles';
-import calcStore from '../../components/Calculator/store';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-const BlankScreen = () => {
-    const [value, setValue] = useState('0');
+let labels = [
+    ['1', '2', '3'],
+    ['4', '5', '6'],
+    ['7', '8', '9'],
+    ['0', '.', '+/-'],
+    ['+', '-', '*', '/'],
+    ['ln', 'C', '=',]
+];
 
-    const typeNumber = (val) => {
-        if (value === '0') {
-            setValue(val);
-        } else {
-            setValue(value + val);
+
+export default function App() {
+    const [operation, setOperation] = useState(null);
+    const [firstOperand, setFirstOperand] = useState('');
+    const [secondOperand, setsecondOperand] = useState('');
+    const [display, setDisplay] = useState('');
+
+    let functionMapping = {
+        '+': () => {
+            setOperation(() => (a, b) => {return a + b;});
+            setFirstOperand(display);
+            setDisplay('');
+        },
+        '-': () => {
+            setOperation(() => (a, b) => {return a - b;});
+            setFirstOperand(display);
+            setDisplay('');
+        },
+        '*': () => {
+            setOperation(() => (a, b) => {return a * b;});
+            setFirstOperand(display);
+            setDisplay('');
+        },
+        '/': () => {
+            setOperation(() => (a, b) => {return a / b;});
+            setFirstOperand(display);
+            setDisplay('');
+        },
+        'ln': () => {
+            setOperation(() => (a, b) => {return Math.log(a);});
+            setFirstOperand(display);
+        },
+        'C': () => {
+            setFirstOperand('');
+            setsecondOperand('');
+            setOperation(null);
+            setDisplay('');
+        },
+        '+/-': () => {
+            setDisplay((+display) * (-1) + '');
+        },
+        '.': () => {
+            if (display.indexOf('.') === -1)
+                setDisplay(display + '.');
+        },
+        '=': () => {
+            setsecondOperand(display);
+            let rezult = operation(+firstOperand, +display);
+            setDisplay(rezult);
         }
     };
-
-    const handleAction = (val) => {
-        if (val === 'C') {
-            setValue('0');
-        }
-
-        if (val === 'CE' && value.length > 1) {
-            setValue(value.slice(0, value.length - 1));
-        }
-
-        if (val === '=') {
-            try {
-                setValue(eval(value).toString());
-            } catch {
-                setValue('Error');
-                setTimeout(() => {
-                    setValue('0');
-                }, 2000);
-            }
-        }
-    };
-
+    for (let i = 0; i < 10; i++) {
+        functionMapping[i + ''] = () => {setDisplay(display + i);};
+    }
     return (
-        <ScrollView style={{ backgroundColor: 'white', }}>
-            <Grid style={s.container}>
-                <Row style={styles.flex0}>
-                    <Col style={[styles.alignCenter, styles.jCenter]}>
-                        <Text style={s.titleName}>Calculator</Text>
-                    </Col>
-                </Row>
-                <Row style={styles.flex0}>
-                    <Col>
-                        <TextInput
-                            defaultValue={value}
-                            value={value}
-                            style={s.inputContainer}
-                        />
-                    </Col>
-                </Row>
-                <Row>
-                    <Col style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }}>
-                        {calcStore.buttons.map((item, i) =>
-                            <TouchableOpacity
-                                key={i}
-                                onPress={() => typeNumber(item.val)}
-                                style={{ flex: 0, width: 70, height: 70, alignItems: 'center', justifyContent: 'center', borderWidth: 1 }}>
-                                <Text style={{ fontSize: 24 }}>{item.val}</Text>
-                            </TouchableOpacity>
-                        )}
-                        {calcStore.actions.map((item, i) =>
-                            <TouchableOpacity
-                                key={i}
-                                onPress={() => handleAction(item.val)}
-                                style={{ flex: 0, width: 70, height: 70, alignItems: 'center', justifyContent: 'center', borderWidth: 1 }}>
-                                <Text style={{ fontSize: 24 }}>{item.val}</Text>
-                            </TouchableOpacity>
-                        )}
-                    </Col>
-                </Row>
-            </Grid>
-        </ScrollView>
+        <View style={styles.root}>
+            <View style={styles.display}>
+                <Text style={{ fontSize: 40 }}>
+                    {display}
+                </Text>
+            </View>
+            <View style={styles.keyboard}>
+                {labels.map((value, index, array) => {
+                    return <View style={styles.row}>
+                        {value.map((item) => {
+                            return <TouchableOpacity style={styles.cell} onPress={() => {functionMapping[item]();}}>
+                                <Text style={{ fontSize: 35 }}>{item}</Text>
+                            </TouchableOpacity>;
+                        })}
+                    </View>;
+                })}
+            </View>
+        </View>
     );
-};
+}
 
-const s = StyleSheet.create({
-    container: {
+const styles = StyleSheet.create({
+    root: {
         flex: 1,
-        // justifyContent: 'center',
+        backgroundColor: '#fff',
         alignItems: 'center',
-        backgroundColor: styles.$white,
+        justifyContent: 'center',
+        fontSize: 40
     },
-    titleName: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginTop: 12
+    display: {
+        flex: 2,
+        backgroundColor: 'lightblue',
+        width: '100%',
+        justifyContent: 'space-around',
+        alignItems: 'center'
     },
-    inputContainer: {
-        minHeight: 45,
-        marginVertical: 24,
-        fontSize: 46,
-        paddingLeft: 12,
-        paddingRight: 12,
-        paddingTop: 12,
-        paddingBottom: 12,
-        borderWidth: .5,
-        borderRadius: 6,
-        textAlign: 'right',
+    keyboard: {
+        flex: 9,
+        width: '100%',
+        backgroundColor: 'lightgrey',
+        justifyContent: 'space-around',
+        alignItems: 'center'
+
+    },
+    row: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        width: '100%',
+    },
+    cell: {
+        flex: 1,
+        borderWidth: 1,
+        width: '100%',
+        height: '100%',
+        justifyContent: 'space-around',
+        alignItems: 'center',
     }
 });
-
-export default BlankScreen;
